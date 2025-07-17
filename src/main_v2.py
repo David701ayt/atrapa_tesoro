@@ -3,7 +3,8 @@ import pygame
 from constants import ANCHO_PANTALLA, ALTO_PANTALLA, TITULO_JUEGO, NEGRO, ROJO # Importa solo lo necesario
 from game_elements.player import Player
 from game_elements.bullet import Bullet
-
+from game_elements.enemy import Enemy
+import random
 # 1. Inicializar Pygame
 pygame.init()
 
@@ -18,8 +19,19 @@ jugador = Player() # Creamos una instancia de nuestra clase Player
 # Un 'Group' en Pygame es una forma eficiente de manejar un conjunto de sprites
 todas_las_sprites = pygame.sprite.Group()
 balas = pygame.sprite.Group()
+enemies = pygame.sprite.Group()
 
 todas_las_sprites.add(jugador) # Añadimos el jugador al grupo de todas las sprites
+
+def generar_enemigo():
+    enemigo = Enemy()
+    todas_las_sprites.add(enemigo)
+    enemies.add(enemigo)
+cantidad_enemigos = random.randrange(2,10)
+for i in range(cantidad_enemigos):
+    generar_enemigo()
+ultimo_enemigo_tiempo = pygame.time.get_ticks()
+tiempo_entre_enemigos = 1000 
 
 # 4. Bucle Principal del Juego
 juego_corriendo = True
@@ -41,6 +53,11 @@ while juego_corriendo:
 
     # 6. Actualizar la Lógica del Juego
     todas_las_sprites.update() # Llama al método .update() de todas las sprites en el grupo
+
+    ahora = pygame.time.get_ticks()
+    if ahora - ultimo_enemigo_tiempo > tiempo_entre_enemigos:
+        ultimo_enemigo_tiempo = ahora
+        generar_enemigo()
 
     # 7. Dibujar / Renderizar
     PANTALLA.fill(NEGRO) # Rellenar el fondo de negro en cada frame
