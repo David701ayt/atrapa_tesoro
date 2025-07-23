@@ -20,6 +20,7 @@ class Enemy(pygame.sprite.Sprite):
             self.image.fill(ENEMY2)
         else:
             self.image.fill(AZUL)
+        self.puntos = 10 # Agregamos puntos para cada enemigo
     def update(self):
         self.rect.y += self.velocidad_y
 
