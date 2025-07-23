@@ -1,6 +1,6 @@
 # src/game_elements/player.py
 import pygame
-from constants import ROJO, ANCHO_PANTALLA, ALTO_PANTALLA
+from constants import ROJO, ANCHO_PANTALLA, ALTO_PANTALLA, AZUL
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -14,6 +14,8 @@ class Player(pygame.sprite.Sprite):
         self.rect.bottom = ALTO_PANTALLA - 10 # Cerca del borde inferior
 
         self.velocidad = 5
+        self.vida = 3 # El jugador tiene 3 vidas
+        self.color_original = ROJO # Vamos a guardar el color inicial del jugador
 
     def update(self):
         # Manejo de la entrada del teclado para el movimiento
@@ -27,3 +29,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.left = 0
         if self.rect.right > ANCHO_PANTALLA:
             self.rect.right = ANCHO_PANTALLA
+    def recibir_danio(self):
+        self.vida -= 1
+        print(f"Jugador golpeado!! Vida restante: {self.vida}")
+        self.image.fill(AZUL) # Cambia temporalmente el color al ser golpeado

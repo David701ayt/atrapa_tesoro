@@ -1,7 +1,7 @@
 # src/game_elements/enemy.py
 import pygame
 import random
-from constants ENEMY1, ENEMY2, AZUL, ANCHO_PANTALLA, ALTO_PANTALLA
+from constants import ENEMY1, ENEMY2, AZUL, ANCHO_PANTALLA, ALTO_PANTALLA
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):

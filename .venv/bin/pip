@@ -1,4 +1,4 @@
-#!/home/usuario/Documentos/curso_programacion/atrapa_tesoro/.venv/bin/python3
+#!/home/roreravi/Documents/david/atrapa_tesoro/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
